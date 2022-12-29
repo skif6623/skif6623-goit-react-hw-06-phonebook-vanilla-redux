@@ -12,7 +12,17 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case 'contacts/deleteContact':
+      return {
+        ...state,
+        contacts: state.contacts.filter(
+          contact => contact.id !== action.payload
+        ),
+      };
+    default:
+      return state;
+  }
 };
 
 const enhancer = devToolsEnhancer();

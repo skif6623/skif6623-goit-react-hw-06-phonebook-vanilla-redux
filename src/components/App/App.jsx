@@ -6,73 +6,73 @@ import { ContactsFilter } from '../ContactsFilter/ContactsFilter';
 import { GlobalStyle } from '../GlobalStyle';
 import { BookApp } from './App.styled';
 
-const contactsIntoBook = [
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
-const getContactsFromStorage = () => {
-  const savedStorageContacts = localStorage.getItem('contacts');
-  if (savedStorageContacts !== null) {
-    return JSON.parse(savedStorageContacts);
-  }
-  return contactsIntoBook;
-};
+// const contactsIntoBook = [
+//   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+//   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+//   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+//   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+// ];
+// const getContactsFromStorage = () => {
+//   const savedStorageContacts = localStorage.getItem('contacts');
+//   if (savedStorageContacts !== null) {
+//     return JSON.parse(savedStorageContacts);
+//   }
+//   return contactsIntoBook;
+// };
 
 export const App = () => {
-  const [contacts, setContacts] = useState(getContactsFromStorage());
-  const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useState(getContactsFromStorage());
+  // const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
-  const addContact = ({ name, number }) => {
-    const newContact = {
-      name,
-      number,
-      id: nanoid(),
-    };
+  // const addContact = ({ name, number }) => {
+  //   const newContact = {
+  //     name,
+  //     number,
+  //     id: nanoid(),
+  //   };
 
-    const duplicateContact = contacts.find(contact => contact.name === name);
+  //   const duplicateContact = contacts.find(contact => contact.name === name);
 
-    duplicateContact !== undefined
-      ? alert(`${name} is alredy in contacts.`)
-      : setContacts(prevContacts => [newContact, ...prevContacts]);
-  };
+  //   duplicateContact !== undefined
+  //     ? alert(`${name} is alredy in contacts.`)
+  //     : setContacts(prevContacts => [newContact, ...prevContacts]);
+  // };
 
-  const changeFilter = e => {
-    const { value } = e.target;
+  // const changeFilter = e => {
+  //   const { value } = e.target;
 
-    setFilter(value);
-  };
+  //   setFilter(value);
+  // };
 
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
+  // const getVisibleContacts = () => {
+  //   const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter)
+  //   );
+  // };
 
-  const deleteContact = contactId => {
-    setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== contactId)
-    );
-  };
+  // const deleteContact = contactId => {
+  //   setContacts(prevContacts =>
+  //     prevContacts.filter(contact => contact.id !== contactId)
+  //   );
+  // };
 
   return (
     <BookApp>
-      <ContactsEditor title="Phonebook" addContact={addContact} />
+      {/* <ContactsEditor title="Phonebook" addContact={addContact} />
       <ContactsFilter
         title="Contacts"
         filter={filter}
         changeFilter={changeFilter}
-      />
+      /> */}
       <ContactsList
-        contacts={getVisibleContacts()}
-        deleteContact={deleteContact}
+      // contacts={getVisibleContacts()}
+      // deleteContact={deleteContact}
       />
       <GlobalStyle />
     </BookApp>
