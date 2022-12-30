@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'components/redux/actions';
+import { useEffect } from 'react';
 import {
   ContactsItem,
   ContactName,
@@ -12,6 +13,10 @@ export const ContactsList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const getVisibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();
