@@ -64,12 +64,11 @@ export const App = () => {
 
   return (
     <BookApp>
-      {/* <ContactsEditor title="Phonebook" addContact={addContact} />
+      {/* <ContactsEditor title="Phonebook" addContact={addContact} /> */}
       <ContactsFilter
-        title="Contacts"
-        filter={filter}
-        changeFilter={changeFilter}
-      /> */}
+      // filter={filter}
+      // changeFilter={changeFilter}
+      />
       <ContactsList
       // contacts={getVisibleContacts()}
       // deleteContact={deleteContact}

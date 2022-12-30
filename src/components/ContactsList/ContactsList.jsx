@@ -6,14 +6,26 @@ import {
   ContactNumber,
   DeleteBtn,
 } from './ContactsList.styled';
+import { getFilter, getContacts } from 'components/redux/selectors';
 
 export const ContactsList = () => {
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
+
+  const getVisibleContacts = () => {
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  const filteredContacts = getVisibleContacts();
 
   return (
     <ul>
-      {contacts.map(({ name, number, id }) => {
+      {filteredContacts.map(({ name, number, id }) => {
         return (
           <ContactsItem key={id}>
             <ContactName>

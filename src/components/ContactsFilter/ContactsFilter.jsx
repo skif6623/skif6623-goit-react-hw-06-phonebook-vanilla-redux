@@ -1,4 +1,6 @@
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilter } from 'components/redux/selectors';
+import { changeFilter } from 'components/redux/actions';
 import {
   ContactsTitle,
   FormLabel,
@@ -6,25 +8,25 @@ import {
 } from '../ContactsEditor/ContactsEditor.styled';
 import { Box } from '../Box';
 
-export const ContactsFilter = ({ title, filter, changeFilter }) => {
+export const ContactsFilter = () => {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const handleChange = e => {
+    dispatch(changeFilter(e.target.value));
+  };
   return (
     <>
-      {title && <ContactsTitle>Contacts</ContactsTitle>}
+      <ContactsTitle>Contacts</ContactsTitle>
       <Box mb={20}>
         <FormLabel htmlFor="filter">Find contacts by name</FormLabel>
         <FormInput
           id="filter"
           type="text"
           value={filter}
-          onChange={changeFilter}
+          onChange={handleChange}
         />
       </Box>
     </>
   );
-};
-
-ContactsFilter.propTypes = {
-  title: PropTypes.string,
-  filter: PropTypes.string.isRequired,
-  changeFilter: PropTypes.func.isRequired,
 };
