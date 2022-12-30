@@ -1,5 +1,7 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'components/redux/selectors';
 import { addContact } from 'components/redux/actions';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   ContactsTitle,
   AddForm,
@@ -23,10 +25,16 @@ const initialValues = {
 };
 
 export const ContactsEditor = () => {
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values));
+    const doubleContact = contacts.filter(
+      contact => contact.name === values.name
+    );
+    doubleContact.length > 0
+      ? toast.error(`${values.name} is alredy in contacts.`)
+      : dispatch(addContact(values));
 
     resetForm();
   };
@@ -59,6 +67,7 @@ export const ContactsEditor = () => {
           <FormBtn type="submit">Add Contact</FormBtn>
         </AddForm>
       </Formik>
+      <Toaster position="bottom-right" />
     </>
   );
 };

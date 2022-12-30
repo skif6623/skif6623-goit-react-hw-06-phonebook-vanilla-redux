@@ -20,11 +20,13 @@ const rootReducer = (state = initialState, action) => {
           contact => contact.id !== action.payload
         ),
       };
+
     case 'filter/changeFilter':
       return {
         ...state,
         filter: action.payload,
       };
+
     case 'contacts/addContact':
       return {
         ...state,
