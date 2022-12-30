@@ -4,3 +4,10 @@ export const deleteContact = contactId => {
     payload: contactId,
   };
 };
+
+export const changeFilter = value => {
+  return {
+    type: 'filter/changeFilter',
+    payload: value,
+  };
+};
