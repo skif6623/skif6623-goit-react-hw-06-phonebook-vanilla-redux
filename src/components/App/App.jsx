@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
 import { ContactsEditor } from '../ContactsEditor/ContactsEditor';
 import { ContactsList } from '../ContactsList/ContactsList';
 import { ContactsFilter } from '../ContactsFilter/ContactsFilter';
@@ -42,37 +40,11 @@ export const App = () => {
   //     : setContacts(prevContacts => [newContact, ...prevContacts]);
   // };
 
-  // const changeFilter = e => {
-  //   const { value } = e.target;
-
-  //   setFilter(value);
-  // };
-
-  // const getVisibleContacts = () => {
-  //   const normalizedFilter = filter.toLowerCase();
-
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(normalizedFilter)
-  //   );
-  // };
-
-  // const deleteContact = contactId => {
-  //   setContacts(prevContacts =>
-  //     prevContacts.filter(contact => contact.id !== contactId)
-  //   );
-  // };
-
   return (
     <BookApp>
-      {/* <ContactsEditor title="Phonebook" addContact={addContact} /> */}
-      <ContactsFilter
-      // filter={filter}
-      // changeFilter={changeFilter}
-      />
-      <ContactsList
-      // contacts={getVisibleContacts()}
-      // deleteContact={deleteContact}
-      />
+      <ContactsEditor />
+      <ContactsFilter />
+      <ContactsList />
       <GlobalStyle />
     </BookApp>
   );

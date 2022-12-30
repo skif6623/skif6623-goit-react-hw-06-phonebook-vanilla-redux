@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'components/redux/actions';
 import {
   ContactsTitle,
   AddForm,
@@ -21,16 +22,18 @@ const initialValues = {
   number: '',
 };
 
-export const ContactsEditor = ({ title, addContact }) => {
+export const ContactsEditor = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, { resetForm }) => {
-    addContact(values);
+    dispatch(addContact(values));
 
     resetForm();
   };
 
   return (
     <>
-      {title && <ContactsTitle>{title}</ContactsTitle>}
+      <ContactsTitle>Phonebook</ContactsTitle>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -58,9 +61,4 @@ export const ContactsEditor = ({ title, addContact }) => {
       </Formik>
     </>
   );
-};
-
-ContactsEditor.propTypes = {
-  title: PropTypes.string,
-  addContact: PropTypes.func.isRequired,
 };
