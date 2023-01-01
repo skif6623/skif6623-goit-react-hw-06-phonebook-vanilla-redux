@@ -1,46 +1,11 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
+// import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 
-const initContactsFromStorage = () => {
-  const savedStorageContacts = localStorage.getItem('contacts');
-  if (savedStorageContacts !== null) {
-    return JSON.parse(savedStorageContacts);
-  }
-  return [];
-};
+import { contactsReduceer, filterReduceer } from './reducer';
 
-const initialState = {
-  contacts: initContactsFromStorage(),
-  filter: '',
-};
-
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'contacts/deleteContact':
-      return {
-        ...state,
-        contacts: state.contacts.filter(
-          contact => contact.id !== action.payload
-        ),
-      };
-
-    case 'filter/changeFilter':
-      return {
-        ...state,
-        filter: action.payload,
-      };
-
-    case 'contacts/addContact':
-      return {
-        ...state,
-        contacts: [action.payload, ...state.contacts],
-      };
-
-    default:
-      return state;
-  }
-};
-
-const enhancer = devToolsEnhancer();
-
-export const store = createStore(rootReducer, enhancer);
+export const store = configureStore({
+  reducer: {
+    contacts: contactsReduceer,
+    filter: filterReduceer,
+  },
+});
