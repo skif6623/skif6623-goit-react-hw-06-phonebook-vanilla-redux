@@ -12,6 +12,7 @@ import { getFilter, getContacts } from 'components/redux/selectors';
 export const ContactsList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
+  console.log(filter);
   const dispatch = useDispatch();
 
   useEffect(() => {

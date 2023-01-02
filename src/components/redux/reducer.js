@@ -6,7 +6,6 @@ export const contactsReduceer = (state = contactsInitialState, action) => {
   switch (action.type) {
     case 'contacts/deleteContact':
       return {
-        ...state,
         contacts: state.contacts.filter(
           contact => contact.id !== action.payload
         ),
@@ -14,7 +13,6 @@ export const contactsReduceer = (state = contactsInitialState, action) => {
 
     case 'contacts/addContact':
       return {
-        ...state,
         contacts: [action.payload, ...state.contacts],
       };
 
@@ -31,7 +29,6 @@ export const filterReduceer = (state = filterInitialState, action) => {
   switch (action.type) {
     case 'filter/changeFilter':
       return {
-        ...state,
         filter: action.payload,
       };
 
